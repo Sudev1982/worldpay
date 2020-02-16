@@ -3,6 +3,7 @@ package com.task.worldpay.worldpayTask.model.persist;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 public class OfferDetails {
@@ -10,7 +11,6 @@ public class OfferDetails {
     private String id;
     private String offerDetails;
     private String currency;
-    //private Timestamp validity;
     private LocalDateTime validity;
 
     public String getId() {
@@ -43,5 +43,21 @@ public class OfferDetails {
 
     public void setValidity(LocalDateTime validity) {
         this.validity = validity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OfferDetails)) return false;
+        OfferDetails that = (OfferDetails) o;
+        return getId().equals(that.getId()) &&
+                getOfferDetails().equals(that.getOfferDetails()) &&
+                getCurrency().equals(that.getCurrency()) &&
+                getValidity().equals(that.getValidity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getOfferDetails(), getCurrency(), getValidity());
     }
 }

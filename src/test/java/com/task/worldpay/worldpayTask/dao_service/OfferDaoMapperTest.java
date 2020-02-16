@@ -67,7 +67,7 @@ public class OfferDaoMapperTest {
         assertNotNull(all);
         assertEquals(allOffers.getCurrency(), all.getCurrency());
         assertEquals(allOffers.getOfferDescription(), all.getOfferDescription());
-        //assertArrayEquals(allOffers.getOfferModelList(), all.getOfferModelList());
+        assertArrayEquals(allOffers.getOfferModelList().toArray(), all.getOfferModelList().toArray());
     }
 
     @Test
@@ -81,9 +81,8 @@ public class OfferDaoMapperTest {
     @Test
     @DisplayName("getOfferDetailsTesting")
     public void getOfferDetailsTest() {
+        assertEquals(offerDetailsList.get(0), offerDaoMapper.getOfferDetails(offer1));
         assertEquals(offerDetailsList.get(0).getId(), offerDaoMapper.getOfferDetails(offer1).getId());
-        assertEquals(offerDetailsList.get(0).getOfferDetails(), offerDaoMapper.getOfferDetails(offer1).getOfferDetails());
-        assertEquals(offerDetailsList.get(0).getCurrency(), offerDaoMapper.getOfferDetails(offer1).getCurrency());
         assertEquals(offerDetailsList.get(0).getValidity(), offerDaoMapper.getOfferDetails(offer1).getValidity());
         assertNotNull(offerDaoMapper.getOfferDetails(offer1));
         assertNull(offerDaoMapper.getOfferDetails(null));
